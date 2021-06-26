@@ -1,0 +1,65 @@
+<div id="container">
+  <!-- populated by JS-->
+</div>
+<script src="./data.js"></script>
+<script>
+  function renderdata(data, container) {
+    var empinfo = data.data;
+    const len = empinfo.length; // posts is an array
+    var html = '';
+    var count = 0;
+    
+    var salaries = [];
+    
+    const countsalover100 = (i) => { 
+       
+    if ( parseInt(empinfo[i][11]) > 50000) {count++ }
+      
+    }
+    
+    
+    for (let i = 0; i < len; i++) {
+     
+     
+       
+        countsalover100(i);
+      
+       
+    }
+  
+    for (var k= 0; k<5 ; k++) 
+  {
+    var largest = -1e32;
+    var indexofMax = 0;
+    var empinfoLength = empinfo.length;
+   
+    
+    for (var j= 0; j< empinfoLength ; j++)
+    { 
+      if (parseInt(empinfo[j][11])> largest)
+      {
+        largest = empinfo[j][11]; 
+        indexofMax = j;
+        
+      }
+
+    }
+    
+    html += '<li>' +
+        '<h2>' + empinfo[indexofMax][8] + '</h2>' +
+        '<h3>' + empinfo[indexofMax][11] + '</h3>' + '</li>'; 
+
+    console.log(indexofMax + " " + largest);
+    
+    console.log(empinfo[indexofMax]);
+    
+    empinfo.splice(indexofMax, 1);
+    //delete empinfo[indexofMax];
+
+  }
+    
+    container.innerHTML = '<ul id = "data">' + html + count + '</ul>';  
+    
+  }
+  renderdata(data, document.getElementById('container'));
+</script>
